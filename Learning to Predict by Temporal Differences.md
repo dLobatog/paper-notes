@@ -1,4 +1,4 @@
-#[Learning to predict by the methods of temporal differences (Sutton 1988)](https://pdfs.semanticscholar.org/9c06/865e912788a6a51470724e087853d7269195.pdf)
+# [Learning to predict by the methods of temporal differences (Sutton 1988)](https://pdfs.semanticscholar.org/9c06/865e912788a6a51470724e087853d7269195.pdf)
 
 ## Key ideas
 * Use past experience of incompletely known system to predict the future
