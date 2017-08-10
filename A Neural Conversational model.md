@@ -1,4 +1,4 @@
-#[A Neural Conversational Model](https://arxiv.org/pdf/1506.05869v3.pdf#cite.bahdanau2014neural)
+# [A Neural Conversational Model](https://arxiv.org/pdf/1506.05869v3.pdf#cite.bahdanau2014neural)
 
 ## Key ideas
 * Previous approaches are closed domain
