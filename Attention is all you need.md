@@ -20,7 +20,7 @@
   - Could be word vectors
 
 ## Attention
-![](attention-transformer.png)
+![](attention-layer.png)
 * Mapping of query and key-value pairs to an output
 * Output is a weighted sum of the values, where the weight for each value depends on the compatibility function of query-key
 * In practice we can compute the attention function on a set of queries simultaneously packing them in a matrix Q
