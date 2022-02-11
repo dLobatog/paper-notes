@@ -1,4 +1,4 @@
-# [Sequence to Sequence with Neural Networks]()
+# [Sequence to Sequence with Neural Networks](http://cs224d.stanford.edu/papers/seq2seq.pdf)
 
 ## Key ideas
 * DNNs work well with training sets but without them they can't be used to map sequences to sequences
