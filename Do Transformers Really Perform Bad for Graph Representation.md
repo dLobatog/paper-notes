@@ -12,7 +12,21 @@
 * Centrality encoding captures node importance in the graph
 * Spatial encoding captures the structural relation between nodes - for each node pair, we assign a learnable embedding based on the spatial relation.
 
+![Screenshot 2022-05-06 at 19 16 09](https://user-images.githubusercontent.com/598891/167196013-a49a9871-a326-4ad1-967f-23d76fed3c21.png)
+
 ## Preliminary 
 * GNN aim to learn representation of nodes and graphs.
 * Modern GNNs mfollow a learning schema that updates the representation of an ode by aggregating representations of its neighbors.
-* Aggregate-combine step: 
+* Aggregate-combine step: ![Screenshot 2022-05-06 at 19 22 15](https://user-images.githubusercontent.com/598891/167196155-aed933ca-bd96-459f-b45b-0f0cc22a732b.png)
+* The task: graph classification
+
+## Centrality Encoding
+* Learnable embedding applied to each node based on the indegree/outdegree of them
+* ![Screenshot 2022-05-06 at 19 23 39](https://user-images.githubusercontent.com/598891/167196315-577ebfab-86dc-48ec-b503-f90075476704.png)
+
+## Spatial Encoding
+* Biased term is specific to the shortest path distance between v_i and v_j.
+*![Screenshot 2022-05-06 at 19 24 37](https://user-images.githubusercontent.com/598891/167196447-24310972-80fc-4e4b-abea-9fade889157f.png)
+
+## Special node
+* A Node \[VNode\] is added to the graph which is then connected to every individual node (distance of 1). The point is that hte representation of the entire h_g graph is the node feature of \[VNode\]
