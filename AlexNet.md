@@ -1,23 +1,43 @@
-# [Graph Attention Networks](https://arxiv.org/pdf/1710.10903.pdf)
+# [ImageNet Classification with Deep Convolutional Neural Networks](https://proceedings.neurips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf)
 
 ## Key ideas
-* Apply different weights to different nodes in the neighborhood without prior knowledge of the graph's structure
-* Spectral vs non-spectral approaches to graph convolutions
-  - Spectral filters learn on Laplacian eigenbasis, hence they are dependent on graph structure
-  - Non-spectral filters use convolution difrectly on the graph operating as close neighbors
-    - Sampling a fixed-size neighborhood (weighted for attention, self link for self-attention) and aggregatin3 Attention g 
+* You can use CUDA and deep CNNs to classify images (yes, this was absolutely novel!)
+* Reduce overfitting via dropout
+* Five conv layers + max pooling + fully connected layers + 1000-way softmax
+* Won ImageNet
 
-## Attention Layer
-* input: node features h={h1,h2,h3... (vectors)}
-* output: ditto
-* At least one linear transformation is required to have higher level features. A weight matrix 'W' can be used for this.
-* <img width="150" alt="Screenshot 2022-05-27 at 16 43 31" src="https://user-images.githubusercontent.com/598891/170800685-d2af3860-abda-4939-a6ae-ae66c0fdb6ee.png">
-* <img width="317" alt="Screenshot 2022-05-27 at 16 43 43" src="https://user-images.githubusercontent.com/598891/170800707-f7d91d20-b8d2-4b81-854f-93eae973c798.png">
-* Where eij is the importance of node j's features to node i
-  - we only compute it for nodes j in i's neighborhood.
-* Also || is concatenation
-* To stabilize the process of self-attention we have found extending one mechanism to employ multi-head attention
-<img width="563" alt="Screenshot 2022-05-27 at 16 45 49" src="https://user-images.githubusercontent.com/598891/170800782-632b2e81-c78d-4dad-92fe-4d9a21aaf797.png">
-<img width="184" alt="Screenshot 2022-05-27 at 16 46 10" src="https://user-images.githubusercontent.com/598891/170800794-903a312b-1d6a-4a2a-aa6b-294e00567f60.png">
+## Introduction
+* Labeled datasets were small up until now (CIFAR is 32x32)
+* ImageNet is one of such larger datasets with 15M labeled images in 22k categories
+* Historically it's been prohibitely expensive to train CNNs for high-resolution images
+* GPUs + optimized 2D convolution operations are enough to do it now
 
-* Highly efficient as computing attention can be parallelized across multiple edges in O(|V|FF' + |E|F') where F is # of node features. 
+## Dataset
+* 15M labeled images in 22k categories
+* ILSVRC is 1k images in 1k categories, 1.2M training images, 50k validation set, 150k test set
+* All images were down-sampled to 256x256
+* Subtracted mean activity from the centered raw RGB values of the pixels
+
+## Architecture
+- ![](alexnet-architecture.png)
+* One GPU runs the top part, another runs the bottom one
+* ReLU: f(x) = max(0,x) , versus the usual tanh or sigmoid are MUCH faster
+* Multiple GPUs training: spread the net across 2 CPUs
+  - GPUs communicate only in certain layers. E.g: kernels of layer 3 take input from kernels in layer 2 output only if they  reside in the same GPU
+* Local response normalization
+  - ReLU might not require normalization but it aids generalization
+  - If a^i_x,y is the activity of a neuron applying kernel i at position (x,y), b^i_x,y or the normalized activity is
+  - ![](alexnet-local-normalization.png)
+
+## Reducing overfitting
+* Data augmentation: random horizontal flipping, translation, and cropping
+  - Note: it's crazy that this was discovered then and it's still the most useful data augmentation technique
+* Data augmentation: altering the intensities of the RGB channels and perform PCA on the set of RGB pixel values (color jittering)
+* Dropout with probability 0.5 in the fully connected layers so that each neuron learns more robust features as it cannot rely on other neurons
+
+## Details of learning and results (skipped)
+
+## Discussion
+* It's notable that even if a single conv layer is removed, the network performance degrades significantly
+  - Hint that depth is important for achieving good results
+* Aim is to use even deeper and larger networks that include even temporal structure for videos
