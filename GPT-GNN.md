@@ -18,10 +18,11 @@
 * Assuming H_t is the node representation of node t at lth GNN layer.
 * N_t are all of the source nodes of node t. E(s,t) all edges from s to t.
 <img width="493" alt="Screenshot 2022-04-04 at 13 55 29" src="https://user-images.githubusercontent.com/598891/161548291-88027152-8e25-4303-bd8a-e612af667f70.png">
+
 * Aggregate: aggregation from neighborhood information (mean, max, sum)
 * Extract: neighborhood info extractor
-* Variational Graph Auto-Encoders for reconstructing the graph structure.
-* InfoGraph: maximizes multual information between graph-level representations from GNNs
+* Variational Graph Auto-Encoders for reconstructing the graph structure OR [(Velickovic et al: Graph Infomax)](https://openreview.net/pdf?id=rklz9iAcKQ)
+* InfoGraph: maximizes mutual information between graph-level representations from GNNs
 
 ## Generative pretraining of GNNs:
 * Input to GNN: G=(V,E,X) node, edge, node-feature matrix
@@ -34,3 +35,5 @@
   * Given a permutated order, we cna factorize the log-likelihood autoregressively generating one node per iteration:
   * <img width="376" alt="Screenshot 2022-04-04 at 14 17 54" src="https://user-images.githubusercontent.com/598891/161552313-ff51f24b-94ba-4354-81e8-66c8b2e72b28.png">
 * <img width="1090" alt="Screenshot 2022-04-04 at 14 18 34" src="https://user-images.githubusercontent.com/598891/161552433-2b859594-aa89-4af4-bbc1-839ac265ac49.png">
+
+## [Video summary](https://www.youtube.com/watch?v=YkLo1JhVdIc)
