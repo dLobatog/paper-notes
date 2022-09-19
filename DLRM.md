@@ -24,3 +24,6 @@
 * MLP parameters are smaller in memory and translate into sizeable amounts of compute. 
 * Data-parallelism is preferred for MLPs
 <img width="365" alt="Screenshot 2022-09-19 at 16 58 35" src="https://user-images.githubusercontent.com/598891/191061041-c365f444-e20f-472c-8215-9fb797ba8b06.png">
+
+
+![image](https://user-images.githubusercontent.com/598891/191062349-c51e1b02-2279-4a98-834f-0dc4b677d8cb.png)
